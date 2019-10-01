@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Items</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let i of items" (click)="presentActionSheet(i)">
+      <ion-label>{{i.Name}} </ion-label>
+      <ion-label style="text-align: right;">{{i.Price? i.Price : 0}} €</ion-label>
+    </ion-item>
+  </ion-list>
+  <br><br><br><br><br><br>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="large" href="/add-edit-item">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
