@@ -40,15 +40,20 @@ export class AppComponent {
           icon: "home"
         },
         {
-          title: "Items",
-          url: "/items",
-          icon: "list"
-        },
-        {
           title: "People",
           url: "/people",
           icon: "people"
         },
+        {
+          title: "Items",
+          url: "/items",
+          icon: "list"
+        },
+        // {
+        //   title: "Settings",
+        //   url: "/settings",
+        //   icon: "settings"
+        // },
       ]
   }
 

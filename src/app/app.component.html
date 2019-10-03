@@ -15,6 +15,14 @@
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
+    <ion-footer>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item routerLink="/settings" routerDirection="forward">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          Settings
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-footer>
   </ion-menu>
   <ion-router-outlet id="content1" main></ion-router-outlet>
 </ion-app>

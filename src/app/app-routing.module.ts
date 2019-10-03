@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'people', loadChildren: './people/people.module#PeoplePageModule' },
   { path: 'add-edit-item', loadChildren: './add-edit-item/add-edit-item.module#AddEditItemPageModule' },
   { path: 'add-edit-person', loadChildren: './add-edit-person/add-edit-person.module#AddEditPersonPageModule' },
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
 ];
 
 @NgModule({

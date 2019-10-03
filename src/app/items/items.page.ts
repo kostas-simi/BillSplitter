@@ -57,9 +57,18 @@ export class ItemsPage implements OnInit {
   };
 
   delete(target) {
-    this.items = this.items.filter(item => item !== target);
+    const index: number = this.items.indexOf(target);
+    this.items.splice(index, 1);
+    this.storage.set("Items", this.items);
+    console.log(this.items);
+  }
+
+
+  deleteAll() {
+    this.items = [];
     this.storage.set("Items", this.items);
   }
 
 
 }
+

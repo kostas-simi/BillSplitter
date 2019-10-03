@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>AddEditPerson</ion-title>
+    <ion-title>Add/Edit Person</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/people"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Name: </ion-label>
+      <ion-input [(ngModel)]="person.Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total: </ion-label>
+      <ion-input [(ngModel)]="person.Total"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label>Items: </ion-label>
+    </ion-item>
+    <ion-select multiple [(ngModel)]="addedItems" (ionChange)="addOnPerson();">
+      <ion-select-option *ngFor="let item of allItems" [value]="item">
+        {{item.Name}}
+      </ion-select-option>
+    </ion-select>
+    <ion-item *ngFor="let i of person.Items">
+      {{i.Name}}
+      <ion-button fill="clear" size="default" slot="end" (click)="deleteItem(i);">
+        <ion-icon name="trash" class="delete"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <br><br><br><br><br><br>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="large" (click)="savePerson();">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

@@ -3,5 +3,6 @@ interface Item {
     Name?: string;
     Price?: number;
     People?: Person[];
+    costPerPerson?: number;
 
 }

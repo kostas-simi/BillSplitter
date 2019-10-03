@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class AddEditItemPage {
   item: Item;
   Items: Item[] = [];
+  editting: boolean = false;
   addedPeople: Person[] = [];
   allPeople: Person[];
   rawItemPeople: Person[] = [];
@@ -21,14 +22,21 @@ export class AddEditItemPage {
   constructor(public navCtrl: NavController, private storage: Storage, public router: Router) {
     if (this.router.getCurrentNavigation().extras.state) {
       this.item = this.router.getCurrentNavigation().extras.state.item;
+      this.editting = true;
     }
     if (!this.item) {
       this.item = { Id: -1, Name: "abc", Price: 0.5, People: [{ Id: 0, Name: 'hghj' }, { Id: 1, Name: 'ghjghj' }] };
     }
-    this.allPeople = Statics.globalPeople;
+    this.storage.get("People").then(people => this.allPeople = people);
     this.rawItemPeople = this.item.People;
     this.storage.get("Items").then((items) => {
-      this.Items = items;
+      if (items) {
+        this.Items = items;
+        this.storage.set("LastItemId", 0)
+      } else {
+        this.Items = [];
+        this.storage.set("LastItemId", 0)
+      }
     });
     console.log(this.Items);
   }
@@ -47,27 +55,41 @@ export class AddEditItemPage {
     this.addedPeople.forEach((p, index) => {
       if (p === person) this.addedPeople.splice(index, 1);
     });
-    this.rawItemPeople.forEach((p, index) => {
+    if (this.rawItemPeople) this.rawItemPeople.forEach((p, index) => {
       if (p === person) this.rawItemPeople.splice(index, 1);
     });
   }
 
+  LastItemId() {
 
+  }
+  costPerPerson() {
+    let cost: number;
+    console.log(this.item.People.length);
+    cost = this.item.Price / this.item.People.length;
+    cost = Math.round(cost * 100) / 100;
+    console.log(cost);
+    return cost;
+  }
   saveItem() {
-    // Statics.globalItems.forEach((i, index) => {
-    //   if (i === this.item) Statics.globalItems.splice(index, 1);
-    // });
+    if (this.item.People) {
+      this.item.costPerPerson = this.costPerPerson();
+    }
+    console.log(this.item.Id);
+    if (this.editting) {
+      this.Items.forEach(i => {
+        if (this.item.Id === i.Id) {
+          i = this.item;
+        }
+      });
+    } else {
 
-
-    console.log("----------");
-    this.Items.push(this.item);
+      // this.item.Id = this.LastItemId();
+      this.Items.push(this.item);
+    }
     this.storage.set("Items", this.Items);
-    this.storage.get("Items").then((items) => {
-      this.Items = items;
-    });
-    console.log(this.Items);
 
-    this.navCtrl.back();
+    // this.navCtrl.navigateForward("/items");
   }
 }
 
