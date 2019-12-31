@@ -11,7 +11,7 @@
   <ion-list>
     <ion-item *ngFor="let i of items" (click)="presentActionSheet(i)">
       <ion-label>{{i.Name}} </ion-label>
-      <ion-label style="text-align: right;">{{i.Price? i.Price : 0}} €</ion-label>
+      <ion-label style="text-align: right;">{{i.Price? i.Price : 0 }} {{ currency }}</ion-label>
     </ion-item>
   </ion-list>
   <br><br><br><br><br><br>

@@ -18,6 +18,7 @@ export class AddEditItemPage {
   addedPeople: Person[] = [];
   allPeople: Person[];
   rawItemPeople: Person[] = [];
+  currency: string;
 
   constructor(public navCtrl: NavController, private storage: Storage, public router: Router) {
     if (this.router.getCurrentNavigation().extras.state) {
@@ -38,6 +39,7 @@ export class AddEditItemPage {
         this.storage.set("LastItemId", 0)
       }
     });
+    this.storage.get("Currency").then(cur => { this.currency = cur; });
     console.log(this.Items);
   }
 

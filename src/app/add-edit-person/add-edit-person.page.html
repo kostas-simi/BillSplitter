@@ -11,26 +11,19 @@
   <ion-list>
     <ion-item>
       <ion-label>Name: </ion-label>
-      <ion-input [(ngModel)]="person.Name"></ion-input>
+      <ion-input [(ngModel)]="person.Name" class="right"></ion-input>
     </ion-item>
+    <br>
     <ion-item>
       <ion-label>Total: </ion-label>
-      <ion-input [(ngModel)]="person.Total"></ion-input>
+      <ion-label class="right">{{person.Total | currency:currency}} </ion-label>
     </ion-item>
     <br>
     <ion-item>
       <ion-label>Items: </ion-label>
     </ion-item>
-    <ion-select multiple [(ngModel)]="addedItems" (ionChange)="addOnPerson();">
-      <ion-select-option *ngFor="let item of allItems" [value]="item">
-        {{item.Name}}
-      </ion-select-option>
-    </ion-select>
-    <ion-item *ngFor="let i of person.Items">
+    <ion-item *ngIf="let i of person.Items">
       {{i.Name}}
-      <ion-button fill="clear" size="default" slot="end" (click)="deleteItem(i);">
-        <ion-icon name="trash" class="delete"></ion-icon>
-      </ion-button>
     </ion-item>
   </ion-list>
   <br><br><br><br><br><br>

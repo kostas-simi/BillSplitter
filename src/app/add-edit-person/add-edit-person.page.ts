@@ -11,6 +11,7 @@ export class AddEditPersonPage implements OnInit {
   person: Person;
   People: Person[] = [];
   editting: boolean = false;
+  currency: string = "EUR";
 
   constructor(private storage: Storage, public router: Router) {
     if (this.router.getCurrentNavigation().extras.state) {

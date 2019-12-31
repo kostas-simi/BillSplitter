@@ -9,9 +9,29 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
-      <ion-label>Language: </ion-label>
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label>Language</ion-label>
+      </ion-list-header>
 
-    </ion-item>
+      <ion-item>
+        <ion-label>English</ion-label>
+        <ion-radio slot="start" value="en" checked></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ελληνικά</ion-label>
+        <ion-radio slot="start" value="gr"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-list>
+    <ion-radio-group id="currency">
+      <ion-list-header>Currency: </ion-list-header>
+      <ion-item *ngFor="let c of currencies">
+        <ion-label> {{c.symbol}} {{ c.name }}</ion-label>
+        <ion-radio slot="start" [value]="c.code" (click)="changeCurrency(c.symbol);"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
   </ion-list>
 </ion-content>

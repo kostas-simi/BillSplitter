@@ -12,14 +12,15 @@ import { NavigationExtras, Router } from '@angular/router';
 export class PeoplePage implements OnInit {
   people: Person[] = [];
   items: Item[] = [];
+  currency: string = "";
   constructor(public actionSheetController: ActionSheetController, private storage: Storage, public router: Router) {
     this.storage.get("Items").then(items => this.items = items);
+    this.storage.get("Currency").then(cur => { this.currency = cur; });
     this.storage.get("People").then(people => {
       this.people = people;
       this.costCalculation();
       console.log(this.people);
     });
-
 
   }
 

@@ -12,9 +12,10 @@ import { NavigationExtras, Router } from '@angular/router';
 export class ItemsPage implements OnInit {
 
   items: Item[] = [];
+  currency: string = "";
   constructor(public actionSheetController: ActionSheetController, private storage: Storage, public navCtrl: NavController, public router: Router) {
+    this.storage.get("Currency").then(cur => { this.currency = cur; });
     this.storage.get("Items").then(items => { this.items = (items); });
-
     console.log(this.items);
   }
 
@@ -54,7 +55,7 @@ export class ItemsPage implements OnInit {
 
   ngOnInit() {
 
-  };
+  }
 
   delete(target) {
     const index: number = this.items.indexOf(target);

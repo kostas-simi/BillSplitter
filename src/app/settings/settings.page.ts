@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
+import currencies from './../international/currencies.json';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
+  currencies: any[] = currencies;
+  constructor(public storage: Storage) {
+    console.log(this.currencies)
+  }
+
 
   ngOnInit() {
   }
 
+  changeCurrency(code) {
+    console.log(code);
+    this.storage.set("Currency", code);
+
+
+  }
 }
